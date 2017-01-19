@@ -29,46 +29,28 @@ period          [.]
 int             [0-9]
 whitespace      [ \t\n]
 
+
 %%
 
     // token definitions go here. "if" is an example.
 {whitespace}+
 
-"."                         DO_RETURN('.');
 "("                         DO_RETURN('(');
 ")"                         DO_RETURN(')');
-"{"                         DO_RETURN('{');
-"}"                         DO_RETURN('}');
 "["                         DO_RETURN('[');
 "]"                         DO_RETURN(']');
-","                         DO_RETURN(',');
 ";"                         DO_RETURN(';');
-"="                         DO_RETURN('=');
 "+"                         DO_RETURN('+');
 "-"                         DO_RETURN('-');
 "*"                         DO_RETURN('*');
 "/"                         DO_RETURN('/');
-"%"                         DO_RETURN('%');
 
-"array"                     DO_RETURN(ARRAY);
-"if"                        DO_RETURN(IF);
-"else"                      DO_RETURN(ELSE);
-"while"                     DO_RETURN(WHILE);
-"print"                     DO_RETURN(PRINT);
-"int"                       DO_RETURN(INT);
-"float"                     DO_RETURN(FLOAT);
-"char"                      DO_RETURN(CHAR);
-"struct"                    DO_RETURN(STRUCT);
-"return"                    DO_RETURN(RETURN);
+"end"                       DO_RETURN(END);
 
 {int}+                      DO_RETURN(INT_VAL);
-{int}+{period}{int}+        DO_RETURN(FLOAT_VAL);
-[a-zA-Z_][a-zA-Z0-9_]*      DO_RETURN(IDENTIFIER);
-"=="                        DO_RETURN(EQUALS);
-"&&"                        DO_RETURN(AND);
-"||"                        DO_RETURN(OR);
 
-"//".+$
+"//".+$                     //do nothing
+"/*"[.$]+"*/"               //do nothing
 
 .                           DO_RETURN(JUNK_TOKEN);
 

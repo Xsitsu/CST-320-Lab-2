@@ -9,7 +9,9 @@
 
 COPTS=-Wall -g -c  -O0
 OBJS=main.o \
-	 langlex.o \
+	utils.o \
+	parse.o \
+	langlex.o \
 
 all: lang
 
